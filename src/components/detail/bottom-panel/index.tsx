@@ -1,9 +1,15 @@
 import React from "react";
 import styled from "@emotion/styled";
 
-export default function BottomPanel(): React.ReactElement {
+interface BottomPanelProps {
+  id?: string
+  className?: string
+  children?: React.ReactNode
+}
+
+export default function BottomPanel(props: BottomPanelProps): React.ReactElement {
   return (
-    <StyledBottomPanel>
+    <StyledBottomPanel className={['bottom-panel', props.className].join(' ')}>
       <div>VIDEO INFO</div>
       <div>VIDEO INFO</div>
       <div>VIDEO INFO</div>
@@ -49,9 +55,11 @@ export default function BottomPanel(): React.ReactElement {
 }
 
 const StyledBottomPanel = styled.div`
-  width: 100%;
-  height: 100%;
-  background-color: yellow;
-  font-size: 20px;
-  text-align: center;
+  &.bottom-panel {
+    width: 100%;
+    height: 100%;
+    background-color: yellow;
+    font-size: 20px;
+    text-align: center;
+  }
 `;

@@ -7,10 +7,9 @@ import BottomPanel from "../components/detail/bottom-panel";
 import SideNav from "../components/detail/side-nav";
 
 interface DetailPageProps { 
-  isMovieMode: boolean;
 }
 
-export default function DetailPage({isMovieMode}:DetailPageProps) {
+export default function DetailPage({}:DetailPageProps) {
   return (
     <StyledDetailPageLayout>
       <section className="header">
@@ -19,7 +18,6 @@ export default function DetailPage({isMovieMode}:DetailPageProps) {
       
       <section className="main">
         <Detail
-          isMovieMode={isMovieMode}
           video={<Video />}
           bottomPanel={<BottomPanel />}
           sideNav={<SideNav />}
@@ -37,18 +35,18 @@ const StyledDetailPageLayout = styled.div`
   display:flex;
   flex-direction: column;
   align-items:center;
-  width: 100%;
+  width: 100vw;
   height: 100%;
 
   background-color:#000;
 
   .header {
-    width: 100%;
+    width: 100vw;
     height: 80px; 
   }
 
   .footer {
-    width: 100%;
+    width: 100vw;
     height: 80px;
   }
 
