@@ -1,32 +1,20 @@
-import React from "react";
-import styled from "@emotion/styled";
+import React from 'react';
+
+import cn from 'classnames';
 
 interface VideoProps {
-  id?: string
-  className?: string
-  children?: React.ReactNode
+  id?: string;
+  className?: string;
+  children?: React.ReactNode;
+  onChangeWideMode: () => void;
 }
 
 export default function Video(props: VideoProps): React.ReactElement {
-  const onWideModeClicked = () => {
-    console.log('wide mode button clicked.')
-  }
-
   // className represents ComponentName as a kebab-case
-  return <StyledVideo className={['video', props.className].join(' ')}>
-    <span>VIDEO</span>
-    <button onClick={onWideModeClicked}>wide</button>
-  </StyledVideo>;
+  return (
+    <div className={cn('video', props.className)}>
+      <span>VIDEO</span>
+      <button onClick={props.onChangeWideMode}>wide</button>
+    </div>
+  );
 }
-
-const StyledVideo = styled.div`
-  &.video {
-    width: 100%;
-    height: 100%;
-  
-    background-color: skyblue;
-    
-    font-size: 20px;
-    text-align: center;
-  }
-`;
