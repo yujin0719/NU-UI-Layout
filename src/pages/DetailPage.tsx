@@ -12,7 +12,9 @@ export default function DetailPage() {
   return (
     <Layout>
       <Detail
-        video={<Video onChangeWideMode={handleChangeMode} />}
+        video={
+          <Video isWideMode={isWideMode} onChangeWideMode={handleChangeMode} />
+        }
         bottomPanel={<BottomPanel />}
         sideNav={<SideNav />}
         isWideMode={isWideMode}

@@ -11,7 +11,8 @@
       height: 480px;
       // 영화관 모드일때는 StyledVideoContainer의 부모 width를 적용
       &.wide-mode {
-        width: 1200px;
+        margin-left: -480px;
+        width: calc(100vw + 480px);
       }
 
       .video {

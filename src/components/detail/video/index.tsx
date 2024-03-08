@@ -6,6 +6,7 @@ interface VideoProps {
   id?: string;
   className?: string;
   children?: React.ReactNode;
+  isWideMode: boolean;
   onChangeWideMode: () => void;
 }
 
@@ -14,7 +15,9 @@ export default function Video(props: VideoProps): React.ReactElement {
   return (
     <div className={cn('video', props.className)}>
       <span>VIDEO</span>
-      <button onClick={props.onChangeWideMode}>wide</button>
+      <button onClick={props.onChangeWideMode}>
+        {props.isWideMode ? '일반모드로 변경' : '영화관모드로 변경'}
+      </button>
     </div>
   );
 }
