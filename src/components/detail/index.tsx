@@ -1,84 +1,44 @@
-import React, { useState, ReactNode } from "react";
-import styled from "@emotion/styled";
+import React, { ReactNode } from 'react';
+
+import cn from 'classnames';
 
 interface DetailProp {
-  id?: string
-  className?: string
-  children?: React.ReactNode
+  id?: string;
+  className?: string;
+  children?: React.ReactNode;
   video: ReactNode;
   bottomPanel: ReactNode;
   sideNav: ReactNode;
+  isWideMode: boolean;
 }
 
 const defaultProps: DetailProp = {
   video: <></>,
   bottomPanel: <></>,
   sideNav: <></>,
-}
+  isWideMode: false,
+};
 
-export default function Detail(props: DetailProp = defaultProps): React.ReactElement {
-  const [isMovieMode, setIsMovieMode] = useState<boolean>(false)
-
+export default function Detail(
+  props: DetailProp = defaultProps
+): React.ReactElement {
   return (
-    <StyledDetail className={['detail', props.className].join(' ')} isMovieMode={isMovieMode}>
-      <StyledVideoContainer className="video-container">
-        <section className={"video-area"}>{props.video}</section>
-        <section className={"bottom-panel"}>{props.bottomPanel}</section>
-      </StyledVideoContainer>
-      <div className={"aaa"}>
-        <aside className={"aside-container"}>
-          <section className={"side-nav-area"}>{props.sideNav}</section>
+    <main className={cn('detail', props.className)}>
+      <div className={'main'}>
+        <section
+          className={cn('video-wrapper', props.isWideMode ? 'wide-mode' : '')}
+        >
+          {props.video}
+        </section>
+        <section className={'bottom-panel-wrapper'}>
+          {props.bottomPanel}
+        </section>
+      </div>
+      <div className={cn('aside ', props.isWideMode ? 'wide-mode' : '')}>
+        <aside className={cn('side-nav-wrapper')}>
+          <section className={'content'}>{props.sideNav}</section>
         </aside>
       </div>
-    </StyledDetail>
+    </main>
   );
 }
-
-interface StyledVideoContainerProps {
-  isMovieMode: boolean;
-}
-
-const StyledDetail = styled.div<StyledVideoContainerProps>`
-  &.detail {
-    display: flex;
-    flex-direction: row;
-
-    .video-container {
-      width: calc(100% - 400px);
-
-      .video-area {
-        height: 480px;
-        // 영화관 모드일때는 StyledVideoContainer의 부모 width를 적용
-        width: ${(props) => (props.isMovieMode && "1200px")};
-      }
-
-      .bottom-panel {
-      }
-    }
-    .aaa {
-      
-      width: calc(100% - 400px);
-
-      .aside-container {
-  
-        position: sticky;
-        // header + video height
-        top: ${(props) => (props.isMovieMode ? "560px" : "0px")};
-        
-        overflow: auto;
-      
-        width: 400px;
-        height: 100%;
-        max-height: 100vh;
-      
-        display: inline-block;
-  
-        .side-nav-area {
-          overflow: auto;
-        }
-      }
-    }
-  }
-`
-
-const StyledVideoContainer = styled.article``;
