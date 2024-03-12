@@ -2,12 +2,13 @@ import React from 'react';
 
 import cn from 'classnames';
 
+import { VideoMode } from '../../../hooks/useVideoMode';
 interface VideoProps {
   id?: string;
   className?: string;
   children?: React.ReactNode;
-  isWideMode: boolean;
-  onChangeWideMode: () => void;
+  videoMode: VideoMode;
+  onChangeWideMode: (mode: VideoMode) => void;
 }
 
 export default function Video(props: VideoProps): React.ReactElement {
@@ -15,8 +16,14 @@ export default function Video(props: VideoProps): React.ReactElement {
   return (
     <div className={cn('video', props.className)}>
       <span>VIDEO</span>
-      <button onClick={props.onChangeWideMode}>
-        {props.isWideMode ? '일반모드로 변경' : '영화관모드로 변경'}
+      <button onClick={() => props.onChangeWideMode('normal')}>
+        {'일반모드로 변경'}
+      </button>
+      <button onClick={() => props.onChangeWideMode('theater')}>
+        {'영화관모드로 변경'}
+      </button>
+      <button onClick={() => props.onChangeWideMode('wide-theater')}>
+        {'풀스크린모드로 변경'}
       </button>
     </div>
   );

@@ -9,10 +9,16 @@
 
     .video-wrapper {
       height: 480px;
+
+      &.wide-theater {
+        width: 100vw;
+        margin-left: calc((-100vw + 1200px) / 2);
+        text-align: center;
+      }
+
       // 영화관 모드일때는 StyledVideoContainer의 부모 width를 적용
-      &.wide-mode {
-        margin-left: -480px;
-        width: calc(100vw + 480px);
+      &.theater {
+        width: 1200px;
       }
 
       .video {
@@ -36,7 +42,8 @@
   }
 
   .aside {
-    &.wide-mode {
+    &.theater,
+    &.wide-theater {
       position: relative;
       top: 480px;
       height: calc(100% - 480px);

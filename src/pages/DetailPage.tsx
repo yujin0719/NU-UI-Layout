@@ -4,20 +4,20 @@ import BottomPanel from '../components/detail/bottom-panel';
 import SideNav from '../components/detail/side-nav';
 import Layout from '../components/common/layout';
 
-import { useWideMode } from '../hooks/useWideMode';
+import { useVideoMode } from '../hooks/useVideoMode';
 
 export default function DetailPage() {
-  const { isWideMode, handleChangeMode } = useWideMode(false);
+  const { videoMode, handleChangeMode } = useVideoMode();
 
   return (
     <Layout>
       <Detail
         video={
-          <Video isWideMode={isWideMode} onChangeWideMode={handleChangeMode} />
+          <Video videoMode={videoMode} onChangeWideMode={handleChangeMode} />
         }
         bottomPanel={<BottomPanel />}
         sideNav={<SideNav />}
-        isWideMode={isWideMode}
+        videoMode={videoMode}
       />
     </Layout>
   );
