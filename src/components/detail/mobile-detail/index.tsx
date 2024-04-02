@@ -1,10 +1,9 @@
 import React, { ReactNode } from 'react';
 
 import cn from 'classnames';
-import { DEFAULT_VIDEO_MODE, VideoMode } from '../../hooks/useVideoMode';
-import { useMobile } from '../../hooks/useMobile';
+import { DEFAULT_VIDEO_MODE, VideoMode } from '../../../hooks/useVideoMode';
 
-interface DetailProp {
+interface MobileDetailProp {
   id?: string;
   className?: string;
   children?: React.ReactNode;
@@ -14,20 +13,18 @@ interface DetailProp {
   videoMode: VideoMode;
 }
 
-const defaultProps: DetailProp = {
+const defaultProps: MobileDetailProp = {
   video: <></>,
   bottomPanel: <></>,
   sideNav: <></>,
   videoMode: DEFAULT_VIDEO_MODE,
 };
 
-export default function Detail(
-  props: DetailProp = defaultProps
+export default function MobileDetail(
+  props: MobileDetailProp = defaultProps
 ): React.ReactElement {
-  const { isMobile } = useMobile();
-
   return (
-    <main className={cn(isMobile ? 'mo-detail' : 'detail', props.className)}>
+    <main className={cn('detail', props.className)}>
       <div className={'main'}>
         <section className={cn('video-wrapper', props.videoMode)}>
           {props.video}
