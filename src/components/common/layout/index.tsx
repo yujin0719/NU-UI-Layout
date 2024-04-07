@@ -5,7 +5,7 @@ import cn from 'classnames';
 import Header from '../header';
 import Footer from '../footer';
 
-import styles from './style.module.scss';
+import styled from '@emotion/styled';
 
 interface LayoutProps {
   id?: string;
@@ -15,14 +15,41 @@ interface LayoutProps {
 
 export default function Layout(props: LayoutProps): React.ReactElement {
   return (
-    <div className={cn(styles.container, props.className)}>
-      <section className={styles['header-wrapper']}>
+    <StyledLayout className={cn('container', props.className)}>
+      <section className={cn('header-wrapper')}>
         <Header />
       </section>
-      <section className={styles['main-wrapper']}>{props.children}</section>
-      <section className={styles['footer-wrapper']}>
+      <section className={cn('main-wrapper')}>{props.children}</section>
+      <section className={cn('footer-wrapper')}>
         <Footer />
       </section>
-    </div>
+    </StyledLayout>
   );
 }
+
+const StyledLayout = styled.div`
+  &.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100vw;
+    height: 100%;
+
+    background-color: #000;
+
+    .header-wrapper {
+      width: 100vw;
+      height: 80px;
+    }
+
+    .footer-wrapper {
+      width: 100vw;
+      height: 80px;
+    }
+
+    .main-wrapper {
+      display: flex;
+      width: 1200px;
+    }
+  }
+`;

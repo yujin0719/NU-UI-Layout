@@ -2,7 +2,7 @@ import React from 'react';
 
 import cn from 'classnames';
 
-import styles from './style.module.scss';
+import styled from '@emotion/styled';
 interface FooterProps {
   id?: string;
   className?: string;
@@ -10,5 +10,19 @@ interface FooterProps {
 }
 
 export default function Footer(props: FooterProps): React.ReactElement {
-  return <footer className={cn(styles.footer, props.className)}>Footer</footer>;
+  return (
+    <StyledFooter className={cn('footer', props.className)}>
+      Footer
+    </StyledFooter>
+  );
 }
+
+const StyledFooter = styled.footer`
+  &.footer {
+    width: 100%;
+    height: 100%;
+    background-color: pink;
+    font-size: 30px;
+    text-align: center;
+  }
+`;
