@@ -64,7 +64,7 @@ const StyledDetail = styled.main`
         // 동영상 1200 + 채팅 400을 최대로 구성 (화면이 작아지면 동일한 비율로 줄어들게 하기 위해 설정)
         width: 100vw;
         max-width: 1600px;
-        // layout에서 main 영역을 1200px로 설정해서 화면 가운데 1200px로 자리잡아 왼쪽 마진이 발생
+        // layout에서 main 영역을 1200px로 설정해 부모가 화면 중앙에 1200px로 위치하면서 왼쪽에 마진이 발생
         margin-left: calc((-100vw + Min(1200px, 100vw)) / 2);
       }
 
