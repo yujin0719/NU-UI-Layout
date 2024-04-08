@@ -54,19 +54,20 @@ const StyledDetail = styled.main`
 
     .main {
       width: calc(100% - 400px);
+      flex: 3;
 
       .video-wrapper {
         height: 480px;
 
         &.wide-theater {
           width: 100vw;
-          margin-left: calc((-100vw + 1200px) / 2);
+          margin-left: calc((-100vw + Min(1200px, 100vw)) / 2);
           text-align: center;
         }
 
         // 영화관 모드일때는 StyledVideoContainer의 부모 width를 적용
         &.theater {
-          width: 1200px;
+          width: Min(1200px, 100vw);
         }
 
         .video {
@@ -90,6 +91,8 @@ const StyledDetail = styled.main`
     }
 
     .aside {
+      flex: 1;
+
       &.theater,
       &.wide-theater {
         position: relative;
@@ -103,7 +106,8 @@ const StyledDetail = styled.main`
         position: sticky;
         top: 0px;
 
-        width: 400px;
+        width: 100%;
+        max-width: 400px;
         height: 100%;
         max-height: 100vh;
 

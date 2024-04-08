@@ -27,29 +27,30 @@ export default function Layout(props: LayoutProps): React.ReactElement {
   );
 }
 
-const StyledLayout = styled.div`
+const StyledLayout = styled.main`
   &.container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 100vw;
+    width: 100%;
     height: 100%;
 
     background-color: #000;
 
     .header-wrapper {
-      width: 100vw;
+      width: 100%;
       height: 80px;
     }
 
     .footer-wrapper {
-      width: 100vw;
+      width: 100%;
       height: 80px;
     }
 
     .main-wrapper {
       display: flex;
-      width: 1200px;
+      max-width: 1200px;
+      width: 100%;
     }
   }
 `;
