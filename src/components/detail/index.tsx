@@ -61,13 +61,14 @@ const StyledDetail = styled.main`
 
         &.wide-theater {
           width: 100vw;
+          // layout에서 main 영역을 1200px로 설정해 부모가 화면 중앙에 1200px로 위치하면서 왼쪽에 마진이 발생
           margin-left: calc((-100vw + Min(1200px, 100vw)) / 2);
           text-align: center;
         }
 
-        // 영화관 모드일때는 StyledVideoContainer의 부모 width를 적용
         &.theater {
-          width: Min(1200px, 100vw);
+          width: 100vw;
+          max-width: 1200px;
         }
 
         .video {
