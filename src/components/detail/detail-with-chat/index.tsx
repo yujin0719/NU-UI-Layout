@@ -60,8 +60,8 @@ const StyledDetail = styled.main`
       display: flex;
       height: 480px;
 
-      &.theater,
-      &.wide-theater {
+      &.wide,
+      &.theater {
         // 채팅 영역이 있으면, 영화관 모드와 full width가 동일하게 동작함 (추후 수정이 필요하면 분리)
         width: 100vw;
         margin-left: calc((-100vw + Min(1200px, 100vw)) / 2);

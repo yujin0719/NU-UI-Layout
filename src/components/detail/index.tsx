@@ -59,14 +59,14 @@ const StyledDetail = styled.main`
       .video-wrapper {
         height: 480px;
 
-        &.wide-theater {
+        &.theater {
           width: 100vw;
           // layout에서 main 영역을 1200px로 설정해 부모가 화면 중앙에 1200px로 위치하면서 왼쪽에 마진이 발생
           margin-left: calc((-100vw + Min(1200px, 100vw)) / 2);
           text-align: center;
         }
 
-        &.theater {
+        &.wide {
           width: 100vw;
           max-width: 1200px;
         }
@@ -94,8 +94,8 @@ const StyledDetail = styled.main`
     .aside {
       flex: 1;
 
-      &.theater,
-      &.wide-theater {
+      &.wide,
+      &.theater {
         position: relative;
         top: 480px;
         height: calc(100% - 480px);

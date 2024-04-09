@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-export type VideoMode = 'normal' | 'theater' | 'wide-theater';
+export type VideoMode = 'normal' | 'wide' | 'theater';
 export const DEFAULT_VIDEO_MODE: VideoMode = 'normal';
 
 interface returnType {
