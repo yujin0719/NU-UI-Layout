@@ -1,14 +1,20 @@
-import React from "react";
-import styled from "@emotion/styled";
+import React from 'react';
 
+import cn from 'classnames';
+
+import styled from '@emotion/styled';
 interface FooterProps {
-  id?: string
-  className?: string
-  children?: React.ReactNode
+  id?: string;
+  className?: string;
+  children?: React.ReactNode;
 }
 
 export default function Footer(props: FooterProps): React.ReactElement {
-  return <StyledFooter className={['footer', props.className].join(' ')}>Footer</StyledFooter>;
+  return (
+    <StyledFooter className={cn('footer', props.className)}>
+      Footer
+    </StyledFooter>
+  );
 }
 
 const StyledFooter = styled.footer`

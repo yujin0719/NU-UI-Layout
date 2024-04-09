@@ -1,14 +1,22 @@
-import React from "react";
-import styled from "@emotion/styled";
+import React from 'react';
+
+import cn from 'classnames';
+
+import styles from './style.module.scss';
+import styled from '@emotion/styled';
 
 interface HeaderProps {
-  id?: string
-  className?: string
-  children?: React.ReactNode
+  id?: string;
+  className?: string;
+  children?: React.ReactNode;
 }
 
 export default function Header(props: HeaderProps): React.ReactElement {
-  return <StyledHeader className={['header', props.className].join(' ')}>HEADER</StyledHeader>;
+  return (
+    <StyledHeader className={cn('header', props.className)}>
+      HEADER
+    </StyledHeader>
+  );
 }
 
 const StyledHeader = styled.header`

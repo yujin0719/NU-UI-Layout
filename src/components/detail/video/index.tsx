@@ -1,32 +1,29 @@
-import React from "react";
-import styled from "@emotion/styled";
+import React from 'react';
 
+import cn from 'classnames';
+
+import { VideoMode } from '../../../hooks/useVideoMode';
 interface VideoProps {
-  id?: string
-  className?: string
-  children?: React.ReactNode
+  id?: string;
+  className?: string;
+  children?: React.ReactNode;
+  videoMode: VideoMode;
+  onChangeWideMode: (mode: VideoMode) => void;
 }
 
 export default function Video(props: VideoProps): React.ReactElement {
-  const onWideModeClicked = () => {
-    console.log('wide mode button clicked.')
-  }
-
-  // className represents ComponentName as a kebab-case
-  return <StyledVideo className={['video', props.className].join(' ')}>
-    <span>VIDEO</span>
-    <button onClick={onWideModeClicked}>wide</button>
-  </StyledVideo>;
+  return (
+    <div className={cn('video', props.className)}>
+      <span>VIDEO</span>
+      <button onClick={() => props.onChangeWideMode('normal')}>
+        {'일반모드로 변경'}
+      </button>
+      <button onClick={() => props.onChangeWideMode('wide')}>
+        {'넓게보기로 변경'}
+      </button>
+      <button onClick={() => props.onChangeWideMode('theater')}>
+        {'영화관모드로 변경'}
+      </button>
+    </div>
+  );
 }
-
-const StyledVideo = styled.div`
-  &.video {
-    width: 100%;
-    height: 100%;
-  
-    background-color: skyblue;
-    
-    font-size: 20px;
-    text-align: center;
-  }
-`;

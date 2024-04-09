@@ -1,84 +1,129 @@
-import React, { useState, ReactNode } from "react";
-import styled from "@emotion/styled";
+import React, { ReactNode } from 'react';
+
+import cn from 'classnames';
+import { DEFAULT_VIDEO_MODE, VideoMode } from '../../hooks/useVideoMode';
+import styled from '@emotion/styled';
 
 interface DetailProp {
-  id?: string
-  className?: string
-  children?: React.ReactNode
+  id?: string;
+  className?: string;
+  children?: React.ReactNode;
   video: ReactNode;
   bottomPanel: ReactNode;
   sideNav: ReactNode;
+  videoMode: VideoMode;
 }
 
 const defaultProps: DetailProp = {
   video: <></>,
   bottomPanel: <></>,
   sideNav: <></>,
-}
+  videoMode: DEFAULT_VIDEO_MODE,
+};
 
-export default function Detail(props: DetailProp = defaultProps): React.ReactElement {
-  const [isMovieMode, setIsMovieMode] = useState<boolean>(false)
+export default function Detail(
+  props: DetailProp = defaultProps
+): React.ReactElement {
+  // const { isMobile } = useMobile();
 
   return (
-    <StyledDetail className={['detail', props.className].join(' ')} isMovieMode={isMovieMode}>
-      <StyledVideoContainer className="video-container">
-        <section className={"video-area"}>{props.video}</section>
-        <section className={"bottom-panel"}>{props.bottomPanel}</section>
-      </StyledVideoContainer>
-      <div className={"aaa"}>
-        <aside className={"aside-container"}>
-          <section className={"side-nav-area"}>{props.sideNav}</section>
+    <StyledDetail className={cn('detail', props.className)}>
+      <div className={'main'}>
+        <section className={cn('video-wrapper', props.videoMode)}>
+          {props.video}
+        </section>
+        <section className={'bottom-panel-wrapper'}>
+          {props.bottomPanel}
+        </section>
+      </div>
+      <div className={cn('aside ', props.videoMode)}>
+        <aside className={cn('side-nav-wrapper')}>
+          <section className={'content'}>{props.sideNav}</section>
         </aside>
       </div>
     </StyledDetail>
   );
 }
 
-interface StyledVideoContainerProps {
-  isMovieMode: boolean;
-}
-
-const StyledDetail = styled.div<StyledVideoContainerProps>`
+const StyledDetail = styled.main`
   &.detail {
     display: flex;
     flex-direction: row;
+    width: 100%;
+    min-height: calc(100vh - 160px);
 
-    .video-container {
+    .main {
       width: calc(100% - 400px);
+      flex: 3;
 
-      .video-area {
+      .video-wrapper {
         height: 480px;
-        // 영화관 모드일때는 StyledVideoContainer의 부모 width를 적용
-        width: ${(props) => (props.isMovieMode && "1200px")};
+
+        &.theater {
+          width: 100vw;
+          // layout에서 main 영역을 1200px로 설정해 부모가 화면 중앙에 1200px로 위치하면서 왼쪽에 마진이 발생
+          margin-left: calc((-100vw + Min(1200px, 100vw)) / 2);
+          text-align: center;
+        }
+
+        &.wide {
+          width: 100vw;
+          max-width: 1200px;
+        }
+
+        .video {
+          width: 100%;
+          height: 100%;
+          background-color: skyblue;
+          font-size: 20px;
+          text-align: center;
+        }
       }
 
-      .bottom-panel {
+      .bottom-panel-wrapper {
+        .bottom-panel {
+          width: 100%;
+          height: 100%;
+          background-color: yellow;
+          font-size: 20px;
+          text-align: center;
+        }
       }
     }
-    .aaa {
-      
-      width: calc(100% - 400px);
 
-      .aside-container {
-  
-        position: sticky;
-        // header + video height
-        top: ${(props) => (props.isMovieMode ? "560px" : "0px")};
-        
+    .aside {
+      flex: 1;
+
+      &.wide,
+      &.theater {
+        position: relative;
+        top: 480px;
+        height: calc(100% - 480px);
+      }
+
+      .side-nav-wrapper {
+        display: inline-block;
         overflow: auto;
-      
-        width: 400px;
+        position: sticky;
+        top: 0px;
+
+        width: 100%;
+        max-width: 400px;
         height: 100%;
         max-height: 100vh;
-      
-        display: inline-block;
-  
-        .side-nav-area {
+
+        .content {
           overflow: auto;
+
+          .side-nav {
+            width: 100%;
+            height: 100%;
+            background-color: seagreen;
+            font-size: 24px;
+            text-align: center;
+          }
         }
       }
     }
   }
-`
-
-const StyledVideoContainer = styled.article``;
+`;
